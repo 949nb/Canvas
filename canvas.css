@@ -3,7 +3,5 @@ body {
 }
 
 #canvas {
-    height: 100vh;
     background-color: lightcoral;
-    position: relative;
 }
