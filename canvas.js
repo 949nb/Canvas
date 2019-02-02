@@ -1,12 +1,21 @@
-var canvas = document.getElementById("canvas")
+var canvas = document.getElementById('canvas');
 console.log(canvas)
-var context = canvas.getContext("2d");
+var context = canvas.getContext('2d');
 
-var pageheight = document.documentElement.clientHeight
-var pagewidth = document.documentElement.clientWidth
+//页面尺寸
+pagesize()
 
-canvas.height = pageheight
-canvas.width = pagewidth
+window.resize = function(){
+    pagesize()
+}
+
+function pagesize(){
+    var pageheight = document.documentElement.clientHeight
+    var pagewidth = document.documentElement.clientWidth
+    canvas.height = pageheight
+    canvas.width = pagewidth
+}
+//页面尺寸
 
 function huayuan(x,y){
     context.beginPath()
