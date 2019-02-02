@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas</title>
+    <link rel="stylesheet" href="./canvas.css">
+</head>
+<body>
+    <div id='canvas'></div>
+    <script>
+        //当鼠标按下时
+        var div = document.getElementById("canvas")
+        div.onmousedown = function(a) {
+            var x = a.clientX
+            var y = a.clientY
+            var divA = document.createElement("div")
+            divA.style =
+                "height: 6px; width: 6px; position: absolute;"+
+                "background-color: black; border-radius: 50%;"+
+                "left: "+(x-3)+"px;"+"top: "+(y-3)+"px;"
+            div.appendChild(divA)
+        }
+    </script>
+</body>
+</html>
