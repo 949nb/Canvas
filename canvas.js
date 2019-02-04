@@ -18,8 +18,15 @@ function pagesize() {
 
 //橡皮擦
 var usingEraser = false
+pen.onclick = function () {
+    usingEraser = false;
+    pen.classList.add("action")
+    eraser.classList.remove("action")
+}
 eraser.onclick = function () {
-    usingEraser = !usingEraser
+    usingEraser = true;
+    eraser.classList.add("action")
+    pen.classList.remove("action")
 }
 
 function huayuan(x, y) {
@@ -30,8 +37,9 @@ function huayuan(x, y) {
 
 var using = false
 var last = { x: undefined, y: undefined }
-//监听触摸事件
+
 if (document.body.ontouchstart !== undefined) {
+    //监听触摸事件
     canvas.ontouchstart = function (a) {
         x = a.touches[0].clientX
         y = a.touches[0].clientY
@@ -66,6 +74,7 @@ if (document.body.ontouchstart !== undefined) {
     canvas.ontouchend = function () {
 
     }
+
 } else {
 
 

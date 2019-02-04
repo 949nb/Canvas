@@ -3,12 +3,31 @@ body {
 }
 
 #canvas {
-    background-color: lightcoral;
     display: block;
+}
+
+
+.icon {
+    width:2em; height: 2em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+    display: block;
+}
+
+#pen {
+    position: fixed;
+    top:10%;
+    left: 5%;
 }
 
 #eraser {
     position: fixed;
-    top: 10%;
-    left: 10%;
+    top:20%;
+    left: 5%;
+}
+
+#action > svg.action{
+    fill: royalblue;
+    border-radius: 50%;
 }
