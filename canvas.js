@@ -15,62 +15,103 @@ function pagesize() {
     canvas.height = pageheight
     canvas.width = pagewidth
 }
-//页面尺寸
 
+//橡皮擦
 var usingEraser = false
-eraser.onclick = function() {
+eraser.onclick = function () {
     usingEraser = !usingEraser
 }
 
 function huayuan(x, y) {
     context.beginPath()
-    context.arc(x, y, 2, 0, 360)
+    context.arc(x, y, 4, 0, 360)
     context.fill()
 }
 
 var using = false
 var last = { x: undefined, y: undefined }
-canvas.onmousedown = function (a) {
-    x = a.clientX
-    y = a.clientY
-    using = true
-    if (usingEraser) {
-        context.clearRect(x, y, 10, 10)
-    } else {
-        last = { x: x, y: y }
-        huayuan(x, y)
-    }
-}
-
-
-canvas.onmousemove = function (a) {
-    x = a.clientX
-    y = a.clientY
-    if (usingEraser) {
-        if(using){
-        context.clearRect(x, y, 4, 4)
-        }else{
-            
-        }
-    } else {
-        if (using) {
-            n = { x: x, y: y }
-            huayuan(x, y)
-            huaxian(last.x, last.y, n.x, n.y)
-            last = n
+//监听触摸事件
+if (document.body.ontouchstart !== undefined) {
+    canvas.ontouchstart = function (a) {
+        x = a.touches[0].clientX
+        y = a.touches[0].clientY
+        using = true
+        if (usingEraser) {
+            context.clearRect(x, y, 10, 10)
         } else {
+            last = { x: x, y: y }
+            huayuan(x, y)
         }
     }
-}
 
-canvas.onmouseup = function (a) {
-    using = false;
+    canvas.ontouchmove = function (a) {
+        x = a.touches[0].clientX
+        y = a.touches[0].clientY
+        if (usingEraser) {
+            if (using) {
+                context.clearRect(x, y, 6, 6)
+            } else {
+            }
+        } else {
+            if (using) {
+                n = { x: x, y: y }
+                huayuan(x, y)
+                huaxian(last.x, last.y, n.x, n.y)
+                last = n
+            } else {
+            }
+        }
+    }
+
+    canvas.ontouchend = function () {
+
+    }
+} else {
+
+
+    //监听鼠标事件
+    canvas.onmousedown = function (a) {
+        x = a.clientX
+        y = a.clientY
+        using = true
+        if (usingEraser) {
+            context.clearRect(x, y, 10, 10)
+        } else {
+            last = { x: x, y: y }
+            huayuan(x, y)
+        }
+    }
+
+
+    canvas.onmousemove = function (a) {
+        x = a.clientX
+        y = a.clientY
+        if (usingEraser) {
+            if (using) {
+                context.clearRect(x, y, 6, 6)
+            } else {
+            }
+        } else {
+            if (using) {
+                n = { x: x, y: y }
+                huayuan(x, y)
+                huaxian(last.x, last.y, n.x, n.y)
+                last = n
+            } else {
+            }
+        }
+    }
+
+    canvas.onmouseup = function (a) {
+        using = false;
+    }
+
 }
 
 function huaxian(x1, y1, x2, y2) {
     context.beginPath()
     context.moveTo(x1, y1)
-    context.lineWidth = 4
+    context.lineWidth = 8
     context.lineTo(x2, y2)
     context.stroke()
     context.closePath()
